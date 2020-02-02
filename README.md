@@ -10,7 +10,8 @@ This utilities package contains the following classes:
 2. **Timer** - Threaded timer that emits time on internal or provided queue after given wait time period. Can be cancelled.
 3. **Ticker** - Same as timer but emits time at regular intervals until stopped.
 4. **Multiplex** - Many-to-One (fan-in) queue management helper.
-5. **Select** - Like Multiplex but output payload contains message source queue to be used in dynamic message based switching. Inspired by Golangs select statements using channels.
+5. **Multicast** - One-to-Many (fan-out) queue management helper.
+6. **Select** - Like Multiplex but output payload contains message source queue to be used in dynamic message based switching. Inspired by Golangs select statements using channels.
 
 **Note that this package is early stages of development.**
 
