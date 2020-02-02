@@ -20,6 +20,7 @@ class Timer:
         self._timer_thread = _Thread(
             target=self._timer, args=(self._output_q, self._time_to_wait), daemon=True
         )
+        self._timer_thread.start()
 
     def _timer(self, output_q: _Queue, wait_time: float) -> None:
         _time.sleep(wait_time)
