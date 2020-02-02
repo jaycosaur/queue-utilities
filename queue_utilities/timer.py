@@ -9,13 +9,13 @@ class Timer:
     """TODO: cleanup thread after timer is manually stopped.
     """
 
-    def __init__(self, time_to_wait: float):
+    def __init__(self, time_to_wait: float, output_queue=_Queue()):
         if time_to_wait <= 0:
             raise TypeError("time_to_wait must be greater than zero")
         self._time_to_wait = time_to_wait
         self._is_finished = False
         self._stop_q = _Queue()
-        self._output_q = _Queue()
+        self._output_q = output_queue
         self._select = _Select(self._stop_q)
         self._timer_thread = _Thread(
             target=self._timer, args=(self._output_q, self._time_to_wait), daemon=True

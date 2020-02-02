@@ -6,10 +6,10 @@ from typing import Any
 
 class Ticker:
     _alive = True
-    _q = _Queue()
     _stop_q = _Queue()
 
-    def __init__(self, time_to_wait: float):
+    def __init__(self, time_to_wait: float, output_queue=_Queue()):
+        self._q = output_queue
         self.time_to_wait = time_to_wait
         self._thread = _Thread(target=self.__tick_looper,)
         self._thread.start()
