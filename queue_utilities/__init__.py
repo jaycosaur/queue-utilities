@@ -6,7 +6,7 @@ name = "queue_utilities"
 
 from .select import Select
 from .multiplex import Multiplex
-from .multicast import Multicasta.
+from .multicast import Multicast
 from .pipe import Pipe
 from .ticker import Ticker
 from .timer import Timer
