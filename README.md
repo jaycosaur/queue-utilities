@@ -23,12 +23,41 @@ python3 -m pip install queue-utilities
 
 ## Usage
 
+### Pipe
+
+```python
+from queue_utilities import Pipe
+
+original_q, output_q = _queue.Queue(), _queue.Queue()
+
+p = Pipe(original_q, output_q)
+
+# put an item into the original queue
+original_q.put(1)
+
+# get the message off the output queue
+recv = output_q.get()
+print(recv)  # 1
+
+# don't forget to stop the pipe after you've finished.
+p.stop()
+```
+
 ### Timer
 
 ```python
 from queue_utilities import Timer
 
-# TODO
+# emit time after 5 seconds
+five_seconds = Timer(5)
+five_seconds.get()
+
+# cancel a timer
+to_cancel = Timer(60)
+print(to_cancel._is_finished) # False
+to_cancel.stop()
+print(to_cancel._is_finished) # True
+
 ```
 
 ### Ticker
@@ -36,21 +65,28 @@ from queue_utilities import Timer
 ```python
 from queue_utilities import Ticker
 
-# TODO
-```
+# print the time every 5 seconds 4 times
+tick = Ticker(5)
+for _ in range(4):
+    print(f"The time is: {tick.get()}")
 
-### Pipe
+# cancel the ticker thread
+tick.stop()
 
-```python
-from queue_utilities import Pipe
-
-# TODO
 ```
 
 ### Multiplex
 
 ```python
 from queue_utilities import Multiplex
+
+# TODO
+```
+
+### Multicast
+
+```python
+from queue_utilities import Multicast
 
 # TODO
 ```

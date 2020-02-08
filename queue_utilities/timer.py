@@ -49,3 +49,4 @@ class Timer:
             return False
         else:
             self._stop_q.put(None)
+            return True
