@@ -13,7 +13,7 @@ class Pipe:
         queue_out: _queue.Queue,
         *,
         forward_close_to_output=False,
-        with_queue=False
+        with_queue=False,
     ) -> None:
         self._queue_in = queue_in
         self._queue_out = queue_out
