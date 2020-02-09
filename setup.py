@@ -2,10 +2,10 @@ import setuptools
 
 setuptools.setup(
     name="queue_utilities",
-    version="0.0.1",
+    version="0.0.2",
     author="Jacob Richter",
     author_email="jaycorichter@gmail.com",
-    description="Micropython compatible producer/subscriber event bus system with optional threading.",
+    description="A collection of helpful queue utilities. Pipes, timers, tickers, multiplexors, multicasters and queue select.",
     long_description=open("README.md").read(),
     long_description_content_type="text/markdown",
     url="https://github.com/jaycosaur/queue-utilities",
