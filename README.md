@@ -13,6 +13,7 @@ This utilities package contains the following classes:
 5. **Multicast** - One-to-Many (fan-out) queue management helper.
 6. **Select** - Like Multiplex but output payload contains message source queue to be used in dynamic message based switching. Inspired by Golangs select statements using channels.
 7. **as_thread** - Decorator to run function in thread.
+8. **attach_queue** - Decorator to attach input and output queues to function which will be run in a thread.
 
 **Note that this package is early stages of development.**
 
@@ -200,6 +201,24 @@ print('Waiting...')
 time.sleep(6)
 print('Done!')
 
+```
+
+### attach_queue
+
+```python
+from queue_utilities import attach_queue
+from queue import Queue
+
+work_queue = Queue()
+result_queue = Queue()
+
+@attach_queue(work_queue, result_queue)
+def squarer(input: int):
+    return input**2
+
+for i in range(10):
+    work_queue.put(i)
+    print(f'{i} squared is {result_queue.get()}')
 ```
 
 ## Contributing

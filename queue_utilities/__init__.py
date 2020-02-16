@@ -11,5 +11,6 @@ from .pipe import Pipe
 from .ticker import Ticker
 from .timer import Timer
 from .as_thread import as_thread
+from .attach_queue import attach_queue
 
-__version__ = "0.0.7"
+__version__ = "0.0.8"
