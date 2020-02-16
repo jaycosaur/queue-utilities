@@ -123,6 +123,34 @@ multicast.stop()
 
 ### Select
 
+### Use with context to build a cancellable thread
+
+```python
+from queue_utilities import Select
+from queue import Queue
+from threading import Thread
+
+out_a, cancel_sig = Queue(), Queue()
+
+
+def selector(*queues):
+    with Select(*queues) as select:
+        for which, message in select:
+            if which is cancel_sig:
+                # stop select on any message on queue b
+                select.stop()
+            else:
+                print(f'Got a message {message}')
+
+
+Thread(target=selector, args=(out_a, cancel_sig)).start()
+
+out_a.put(1)
+out_a.put(2)
+out_a.put(3)
+cancel_sig.put('Bye')
+```
+
 #### Timeout a function with Timer
 
 ```python

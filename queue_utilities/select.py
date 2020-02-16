@@ -49,3 +49,9 @@ class Select:
 
     def __iter__(self) -> Iterator[Any]:
         return self
+
+    def __enter__(self) -> "Select":
+        return self
+
+    def __exit__(self, *exc) -> None:
+        self.stop()
