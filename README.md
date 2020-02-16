@@ -123,7 +123,7 @@ multicast.stop()
 
 ### Select
 
-### Use with context to build a cancellable thread
+#### Use with context to build a cancellable thread
 
 ```python
 from queue_utilities import Select
