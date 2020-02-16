@@ -79,8 +79,28 @@ tick.stop()
 
 ```python
 from queue_utilities import Multiplex
+from queue import Queue
 
-# TODO
+# create two queues and pass them into the Multiplex
+queue_a, queue_b = Queue(), Queue()
+multi_p = Multiplex(queue_a, queue_b)
+
+# send messages to any of the queues
+queue_a.put("a")
+queue_b.put("b")
+
+# read the messages
+for _ in range(2):
+    message = multi_p()  # or multi_p.get()
+    print(f"I got a message! {message}")
+
+# cleanup
+multi_p.stop()
+
+# if you try to read a message after stop
+# it raises a MultiplexClosed exception
+multi_p.get()
+
 ```
 
 ### Multicast

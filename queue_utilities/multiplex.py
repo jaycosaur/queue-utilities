@@ -3,6 +3,10 @@ from typing import Any, List, Iterator
 from .pipe import Pipe as _Pipe
 
 
+class MultiplexClosed(Exception):
+    pass
+
+
 class Multiplex:
     def __init__(
         self, *queues: _Queue,
@@ -22,13 +26,18 @@ class Multiplex:
     def ouput(self) -> _Queue:
         return self.__multiplexed_queue
 
-    def __call__(self) -> Any:
+    def get(self) -> Any:
+        if self.is_stopped:
+            raise MultiplexClosed
         return self.__multiplexed_queue.get()
+
+    def __call__(self) -> Any:
+        return self.get()
 
     def __next__(self) -> Any:
         if self.is_stopped:
             raise StopIteration
-        return self.__multiplexed_queue.get()
+        return self.get()
 
     def __iter__(self) -> Iterator[Any]:
         return self
