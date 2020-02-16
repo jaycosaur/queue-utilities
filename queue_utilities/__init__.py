@@ -12,4 +12,4 @@ from .ticker import Ticker
 from .timer import Timer
 from .as_thread import as_thread
 
-__version__ = "0.0.6"
+__version__ = "0.0.7"

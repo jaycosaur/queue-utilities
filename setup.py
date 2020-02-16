@@ -2,7 +2,7 @@ import setuptools  # type: ignore
 
 setuptools.setup(
     name="queue_utilities",
-    version="0.0.6",
+    version="0.0.7",
     author="Jacob Richter",
     author_email="jaycorichter@gmail.com",
     description="A collection of helpful queue utilities. Pipes, timers, tickers, multiplexors, multicasters and queue select.",
