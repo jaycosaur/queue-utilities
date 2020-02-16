@@ -2,7 +2,7 @@
 
 Let's make using Queues great again! Queue utilities and conveniences for those using sync libraries.
 
-_Currently implements using threads and threading queues only, multiprocessing queues and process support will be implemented soon._
+_Currently implements using threads and threading queues as standard, multiprocessing queues can be used by passing in relevant multiprocessing.Queue arguments. Worker threads use threading.Thread not multiprocessing.Process by design, if you require running eg Select in an external process as a message broker I recommend spawning a Process and then using as is documented._
 
 This utilities package contains the following classes:
 
@@ -12,6 +12,7 @@ This utilities package contains the following classes:
 4. **Multiplex** - Many-to-One (fan-in) queue management helper.
 5. **Multicast** - One-to-Many (fan-out) queue management helper.
 6. **Select** - Like Multiplex but output payload contains message source queue to be used in dynamic message based switching. Inspired by Golangs select statements using channels.
+7. **as_thread** - Decorator to run function in thread.
 
 **Note that this package is early stages of development.**
 
@@ -181,6 +182,24 @@ for (which_q, result) in select:
     break
 
 select.stop()
+```
+
+### as_thread
+
+```python
+from queue_utilities import as_thread
+import time
+
+@as_thread
+def sleeper():
+    time.sleep(5)
+    print('Goodbye!')
+
+sleeper()
+print('Waiting...')
+time.sleep(6)
+print('Done!')
+
 ```
 
 ## Contributing
