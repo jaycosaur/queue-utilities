@@ -21,7 +21,12 @@ class Pipe:
         self._with_queue = with_queue
         self.thread = _threading.Thread(
             target=self._pipe,
-            args=(self._queue_in, self._queue_out, forward_close_to_output, with_queue),
+            args=(
+                self._queue_in,
+                self._queue_out,
+                self._forward_close,
+                self._with_queue,
+            ),
         )
         self.thread.start()
 
