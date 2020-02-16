@@ -107,8 +107,18 @@ multi_p.get()
 
 ```python
 from queue_utilities import Multicast
+from queue import Queue
 
-# TODO
+out_a, out_b = Queue(), Queue()
+
+multicast = Multicast(out_a, out_b)
+
+multicast.send("A message!")
+
+for q in (out_a, out_b):
+    print(q.get()) # prints "A message!" twice!
+
+multicast.stop()
 ```
 
 ### Select

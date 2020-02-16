@@ -16,7 +16,9 @@ class Multicast:
         self._thread = _Thread(
             target=self._publisher_multicast,
             args=(self.__multicast_queue, *self._output_queues),
+            daemon=True,
         )
+        self._thread.start()
 
     def _publisher_multicast(self, input_queue: _Queue, *output_queues: List[_Queue]):
         while True:
