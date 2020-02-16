@@ -11,7 +11,7 @@ class Multiplex:
     def __init__(
         self, *queues: _Queue,
     ):
-        self.__multiplexed_queue = _Queue(maxsize=0)
+        self.__multiplexed_queue: _Queue = _Queue(maxsize=0)
         self._input_queues = queues
         self._pipes: List[_Pipe] = [
             _Pipe(q_in, self.__multiplexed_queue) for q_in in self._input_queues

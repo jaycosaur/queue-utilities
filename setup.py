@@ -1,4 +1,4 @@
-import setuptools
+import setuptools  # type: ignore
 
 setuptools.setup(
     name="queue_utilities",

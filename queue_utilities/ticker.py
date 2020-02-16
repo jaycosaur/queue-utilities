@@ -6,7 +6,7 @@ from typing import Any
 
 class Ticker:
     _alive = True
-    _stop_q = _Queue()
+    _stop_q: _Queue = _Queue()
 
     def __init__(self, time_to_wait: float, output_queue=_Queue()):
         self._q = output_queue

@@ -23,7 +23,7 @@ class Select:
     def __init__(
         self, *queues: _queue.Queue,
     ):
-        self.__multiplexed_queue = _queue.Queue(maxsize=0)
+        self.__multiplexed_queue: _queue.Queue = _queue.Queue(maxsize=0)
         self._input_queues = queues
         self._pipes: List[Pipe] = [
             Pipe(q_in, self.__multiplexed_queue, with_queue=True)

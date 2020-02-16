@@ -20,7 +20,7 @@ class Multicast:
         )
         self._thread.start()
 
-    def _publisher_multicast(self, input_queue: _Queue, *output_queues: List[_Queue]):
+    def _publisher_multicast(self, input_queue: _Queue, *output_queues: _Queue):
         while True:
             mes = input_queue.get()
             if isinstance(mes, MulticastClose):

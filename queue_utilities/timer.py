@@ -14,7 +14,7 @@ class Timer:
             raise TypeError("time_to_wait must be greater than zero")
         self._time_to_wait = time_to_wait
         self._is_finished = False
-        self._stop_q = _Queue()
+        self._stop_q: _Queue = _Queue()
         self._output_q = output_queue
         self._select = _Select(self._stop_q)
         self._timer_thread = _Thread(
