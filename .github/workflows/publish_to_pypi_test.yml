@@ -1,6 +1,10 @@
-name: Build Only No Release
+name: Publish Python 🐍 distributions 📦 to Test PyPI
 
-on: push
+on:
+  push:
+    # Sequence of patterns matched against refs/tags
+    tags:
+      - "test-v*" # Push events to matching v*, i.e. v1.0, v20.15.10
 
 jobs:
   build-n-publish:
@@ -26,3 +30,11 @@ jobs:
 
       - name: 🎁 Build a binary wheel and a source tarball
         run: python -m pep517.build --source --binary --out-dir dist/ .
+
+      - name: Publish package 📦 to TestPyPI
+        if: github.event_name == 'push' && startsWith(github.event.ref, 'refs/tags')
+        uses: pypa/gh-action-pypi-publish@master
+        with:
+          user: __token__
+          password: ${{ secrets.test_pypi_password }}
+          repository_url: https://test.pypi.org/legacy/
