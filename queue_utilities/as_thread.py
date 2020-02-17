@@ -9,4 +9,3 @@ def as_thread(func: _typing.Callable[..., None]):
         return thread
 
     return threaded
-
